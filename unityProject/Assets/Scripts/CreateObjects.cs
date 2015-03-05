@@ -123,7 +123,7 @@ public class CreateObjects : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.DrawTexture(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y, cursorWidth, cursorHeight), cursorImage);
+        //GUI.DrawTexture(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y, cursorWidth, cursorHeight), cursorImage);
     }
 }
 	
