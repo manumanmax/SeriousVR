@@ -101,7 +101,7 @@ public class CreateObjects : MonoBehaviour
         dropLight.name = "dropLight";
 
         
-        // cursor loking
+        // cursor locking
         Screen.lockCursor = true;
 
     }
@@ -109,9 +109,6 @@ public class CreateObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Screen.showCursor = true;
-
         if (Input.GetKeyDown(KeyCode.P))
             if (Screen.lockCursor)
                 Screen.lockCursor = false;
@@ -121,10 +118,6 @@ public class CreateObjects : MonoBehaviour
             }
     }
 
-    void OnGUI()
-    {
-        //GUI.DrawTexture(new Rect(Input.mousePosition.x, Screen.height - Input.mousePosition.y, cursorWidth, cursorHeight), cursorImage);
-    }
 }
 	
 
