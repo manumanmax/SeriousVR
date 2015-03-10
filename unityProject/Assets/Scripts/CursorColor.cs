@@ -3,12 +3,11 @@ using System.Collections;
 
 [RequireComponent(typeof(RayCast))]
 public class CursorColor : MonoBehaviour {
-	public int size = 6;
+	public static int size = 6;
 	public GameObject otherGameObject;
 
-	private Texture2D t;
-	private Variables vars;
-	public bool display = false;
+	private static Texture2D t;
+	public static bool display = false;
     public bool dragOk = false;
 
 
@@ -18,6 +17,7 @@ public class CursorColor : MonoBehaviour {
 		t = new Texture2D(size, size, TextureFormat.RGB24, true);
 		t.name = "Procedural Texture";
 		FillTexture(Color.green);
+        
 	}
 
 	public void OnMouseEnter () {
@@ -27,8 +27,11 @@ public class CursorColor : MonoBehaviour {
 	}
 
 	public void OnMouseExit() {
-		if(!dragOk)
-			Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+        if (!dragOk)
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.ForceSoftware);
+            display = false;
+        }
 	}
 
     void OnMouseDown() 
@@ -48,8 +51,6 @@ public class CursorColor : MonoBehaviour {
         
 	}
 
-  
-	
 	private void FillTexture (Color color) {
 		for (int y = 0; y < size; y++) {
 			for (int x = 0; x < size; x++) {
@@ -58,4 +59,18 @@ public class CursorColor : MonoBehaviour {
 		}
 		t.Apply();
 	}
+
+    void OnGUI()
+    {
+        if (!display)
+        {
+            FillTexture(Color.red);
+            GUI.DrawTexture(new Rect(Screen.width / 2, Screen.height / 2, size, size), t);
+        }
+        else
+        {
+            FillTexture(Color.green);
+            GUI.DrawTexture(new Rect(Screen.width / 2, Screen.height / 2, size, size), t);
+        }
+    }
 }
