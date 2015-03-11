@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class CreateObjects : MonoBehaviour
-{
+public class CreateObjects : MonoBehaviour {
     public GameObject controller = new GameObject();
     public GameObject cube_1 = new GameObject();
     public GameObject cube_2 = new GameObject();
@@ -20,8 +19,7 @@ public class CreateObjects : MonoBehaviour
     public float panelSpace;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         panelSpace = 10.6f;
 
         controller = new GameObject();
@@ -31,7 +29,6 @@ public class CreateObjects : MonoBehaviour
         controller.AddComponent<GUILayer>();
         controller.AddComponent<CameraGrabber>();
         controller.tag = "MainCamera";
-        //controller.AddComponent<MouseLook>();
 
         controller.transform.position = new Vector3((float)(15 - (panelSpace)), 5, 10);
 
@@ -100,24 +97,18 @@ public class CreateObjects : MonoBehaviour
         dropLight.transform.Translate(new Vector3(-panelSpace, 0, 0));
         dropLight.name = "dropLight";
 
-        
-        // cursor locking
         Screen.lockCursor = true;
-
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         if (Input.GetKeyDown(KeyCode.P))
             if (Screen.lockCursor)
                 Screen.lockCursor = false;
-            else
-            {
+            else {
                 Screen.lockCursor = true;
             }
     }
-
 }
-	
+
 
