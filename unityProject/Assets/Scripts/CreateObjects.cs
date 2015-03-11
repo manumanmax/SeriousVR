@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public class CreateObjects : MonoBehaviour {
-    public GameObject controller = new GameObject();
+    /*public GameObject controller = new GameObject();
     public GameObject cube_1 = new GameObject();
     public GameObject cube_2 = new GameObject();
     public GameObject cube_3 = new GameObject();
@@ -17,11 +17,18 @@ public class CreateObjects : MonoBehaviour {
     public Vector3 storeLightPos;
     public Vector4 lightColor;
     public float panelSpace;
+    */
+
+    void Awake()
+    {
+        Screen.lockCursor = true;
+    }
+
 
     // Use this for initialization
     void Start() {
-        panelSpace = 10.6f;
-
+        //panelSpace = 10.6f;
+        /*
         controller = new GameObject();
         controller.AddComponent<CharacterController>();
         controller.AddComponent<MouseLook>();
@@ -31,8 +38,9 @@ public class CreateObjects : MonoBehaviour {
         controller.tag = "MainCamera";
 
         controller.transform.position = new Vector3((float)(15 - (panelSpace)), 5, 10);
-
+        */
         // cubes
+        /*
         cube_1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube_1.transform.position = new Vector3((float)(15 - (0)), 1, -2);
         cube_1.AddComponent<CursorColor>();
@@ -41,7 +49,7 @@ public class CreateObjects : MonoBehaviour {
         cube_1.AddComponent<BoxCollider>();
         cube_2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube_2.transform.position = new Vector3((float)(15 - (1.5)), 1, -2);
-        cube_2.AddComponent<CursorColor>();
+        cube_2.AddComponent<CursorColor>(); 
         cube_2.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionZ;
         cube_2.AddComponent<BoxCollider>();
         cube_3 = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -53,8 +61,9 @@ public class CreateObjects : MonoBehaviour {
         cube_2.AddComponent<RayCast>();
         cube_3.AddComponent<RayCast>();
 
-
+        */
         // Areas
+        /*
         storeArea = GameObject.CreatePrimitive(PrimitiveType.Plane);
         storeArea.name = "storeArea";
         storeArea.transform.position = new Vector3((float)(15 - (0)), 1, -4);
@@ -64,8 +73,9 @@ public class CreateObjects : MonoBehaviour {
         resultArea = GameObject.CreatePrimitive(PrimitiveType.Plane);
         resultArea.transform.position = new Vector3((float)(15 - (2 * panelSpace)), 1, -4);
         resultArea.name = "resultArea";
-
+        */
         // Panels
+        /*
         storePanel = GameObject.CreatePrimitive(PrimitiveType.Plane);
         storePanel.name = "storePanel";
         storePanel.transform.position = new Vector3((float)(15 - 0), 1, -4);
@@ -79,9 +89,10 @@ public class CreateObjects : MonoBehaviour {
         resultPanel = (GameObject)Instantiate(dropPanel);
         resultPanel.transform.position = storePanel.transform.position + new Vector3(-(2 * panelSpace), 0.0f, 0.0f);
         resultPanel.name = "resultPanel";
-
+        */
 
         //lights
+        /*
         storeLightPos = new Vector3(15.2f, 30f, -3.224f);
         lightColor = new Vector4(200, 172, 85, 255);
         lightGameObject = new GameObject("storeLight");
@@ -95,9 +106,10 @@ public class CreateObjects : MonoBehaviour {
 
         dropLight = (GameObject)Instantiate(lightGameObject);
         dropLight.transform.Translate(new Vector3(-panelSpace, 0, 0));
-        dropLight.name = "dropLight";
+        dropLight.name = "dropLight";*/
 
-        Screen.lockCursor = true;
+        //Camera.main.transform.LookAt(dropPanel.transform);
+        
     }
 
     // Update is called once per frame
