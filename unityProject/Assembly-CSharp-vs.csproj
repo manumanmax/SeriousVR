@@ -49,7 +49,6 @@
      <Compile Include="Assets\Scripts\CameraGrabber.cs" />
      <Compile Include="Assets\Scripts\CreateObjects.cs" />
      <Compile Include="Assets\Scripts\CursorColor.cs" />
-     <Compile Include="Assets\Scripts\Dragable.cs" />
      <Compile Include="Assets\Scripts\DropOn.cs" />
      <Compile Include="Assets\Scripts\ObjectLabel.cs" />
      <Compile Include="Assets\Scripts\RayCast.cs" />
