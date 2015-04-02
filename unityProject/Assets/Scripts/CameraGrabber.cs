@@ -35,7 +35,7 @@ public class CameraGrabber : MonoBehaviour
     void Update()
     {
 
-        ray = Camera.main.ScreenPointToRay(new Vector3(cursorPos.x,cursorPos.y, 0.0f));
+        ray = Camera.main.ScreenPointToRay(new Vector3(cursorPos.x, cursorPos.y, 0.0f));
         Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
         Debug.Log(ray);
 
@@ -53,13 +53,15 @@ public class CameraGrabber : MonoBehaviour
             }
             else
             {
-                display = false;
+                if (!dragOk)
+                    display = false;
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             dragOk = false;
+            display = false;
             objectDragged = null;
         }
 
