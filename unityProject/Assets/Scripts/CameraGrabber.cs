@@ -18,7 +18,8 @@ public class CameraGrabber : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        ray = Camera.main.ScreenPointToRay(new Vector3(cursCol.cursorPos.x, cursCol.cursorPos.y, 0));
+
         if (cursCol == null)
         {
             if (Physics.Raycast(ray, out hit))
@@ -28,11 +29,12 @@ public class CameraGrabber : MonoBehaviour {
 
                 if (cursCol != null)
                 {
+                   
                     Debug.Log("cursorColor found : " + cursCol.dragOk);
                     if (cursCol.dragOk)
                     {
                         Vector3 worldPos = Camera.main.ScreenToWorldPoint(
-                            new Vector3(Input.mousePosition.x, Input.mousePosition.y, hit.distance));
+                            new Vector3(cursCol.cursorPos.x, cursCol.cursorPos.y, hit.distance));
                         worldPos = new Vector3(worldPos.x, worldPos.y, hitObject.transform.position.z);
                         hitObject.rigidbody.MovePosition(worldPos);
                         Debug.Log("dragging");
