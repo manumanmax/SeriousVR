@@ -13,6 +13,8 @@ public class CameraGrabber : MonoBehaviour
     public bool display = false;
     public bool dragOk = false;
 
+    private GameObject objectDragged = null;
+
 
     // Use this for initialization
     void Start()
@@ -40,18 +42,13 @@ public class CameraGrabber : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             hitObject = hit.transform.gameObject;
-            Debug.Log(hitObject.tag);
             if (hitObject.tag.Equals("grabbable"))
             {
                 display = true;
-                Debug.Log("cursorColor found : " + dragOk);
-                if (dragOk)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(
-                        new Vector3(cursorPos.x, cursorPos.y, hit.distance));
-                    worldPos = new Vector3(worldPos.x, worldPos.y, hitObject.transform.position.z);
-                    hitObject.rigidbody.MovePosition(worldPos);
-                    Debug.Log("dragging");
+                    objectDragged = hitObject;
+                    dragOk = true;
                 }
             }
             else
@@ -60,19 +57,20 @@ public class CameraGrabber : MonoBehaviour
             }
         }
 
+        if (Input.GetMouseButtonUp(0))
+        {
+            dragOk = false;
+            objectDragged = null;
+        }
+
 
         if (dragOk)
         {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(
-                new Vector3(Input.mousePosition.x, Input.mousePosition.y, hit.distance));
-            worldPos = new Vector3(worldPos.x, worldPos.y, hitObject.transform.position.z);
-            hitObject.rigidbody.MovePosition(worldPos);
-            Debug.Log("dragging");
+                new Vector3(cursorPos.x, cursorPos.y, hit.distance));
+            worldPos = new Vector3(worldPos.x, worldPos.y, objectDragged.transform.position.z);
+            objectDragged.rigidbody.MovePosition(worldPos);
         }
-
-
-
-
     }
 
 
