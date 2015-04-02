@@ -1,112 +1,61 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraGrabber : MonoBehaviour
-{
+public class CameraGrabber : MonoBehaviour {
     public GameObject hitObject = null;
     private Ray ray;
     private RaycastHit hit;
-    private static Texture2D t;
-    public static int size = 6;
-    public Vector2 cursorPos;
+    private CursorColor cursCol;
+    
+     
+	// Use this for initialization
+	void Start () {
+	
+	}
 
-    public bool display = false;
-    public bool dragOk = false;
+   
 
-    private GameObject objectDragged = null;
-    private RaycastHit hitOfObjectDragged;
+	// Update is called once per frame
+	void Update () {
 
-    private Camera camera;
-
-
-    // Use this for initialization
-    void Start()
-    {
-        camera = Camera.main;
-    }
-    private void Awake()
-    {
-        t = new Texture2D(size, size, TextureFormat.RGB24, true);
-        t.name = "Procedural Texture";
-        FillTexture(Color.green);
-        cursorPos = new Vector2(Screen.width / 2, Screen.height / 2);
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        ray = Camera.main.ScreenPointToRay(new Vector3(cursorPos.x, cursorPos.y, 0.0f));
-        Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-        Debug.Log(ray);
-
-        if (Physics.Raycast(ray, out hit))
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (cursCol == null)
         {
-            hitObject = hit.transform.gameObject;
-            if (hitObject.tag.Equals("grabbable"))
+            if (Physics.Raycast(ray, out hit))
             {
-                display = true;
-                if (Input.GetMouseButtonDown(0))
+                hitObject = hit.transform.gameObject;
+                cursCol = hitObject.GetComponent<CursorColor>();
+
+                if (cursCol != null)
                 {
-                    objectDragged = hitObject;
-                    hitOfObjectDragged = hit;
-                    dragOk = true;
+                    Debug.Log("cursorColor found : " + cursCol.dragOk);
+                    if (cursCol.dragOk)
+                    {
+                        Vector3 worldPos = Camera.main.ScreenToWorldPoint(
+                            new Vector3(Input.mousePosition.x, Input.mousePosition.y, hit.distance));
+                        worldPos = new Vector3(worldPos.x, worldPos.y, hitObject.transform.position.z);
+                        hitObject.rigidbody.MovePosition(worldPos);
+                        Debug.Log("dragging");
+                    }
                 }
             }
-            else
-            {
-                if (!dragOk)
-                    display = false;
-            }
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            dragOk = false;
-            display = false;
-            
-            objectDragged = null;
-        }
-
-
-        if (dragOk)
-        {
-            float distance = Vector3.Distance(camera.transform.position,objectDragged.transform.position);
-
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(
-                new Vector3(cursorPos.x, cursorPos.y, distance));
-            worldPos = new Vector3(worldPos.x, worldPos.y, objectDragged.transform.position.z);
-            objectDragged.rigidbody.MovePosition(worldPos);
-        }
-    }
-
-
-    void OnGUI()
-    {
-
-        if (!display)
-        {
-            FillTexture(Color.red);
-            GUI.DrawTexture(new Rect(cursorPos.x, cursorPos.y, size, size), t);
         }
         else
         {
-            FillTexture(Color.green);
-            GUI.DrawTexture(new Rect(cursorPos.x, cursorPos.y, size, size), t);
-        }
-    }
-    private void FillTexture(Color color)
-    {
-        for (int y = 0; y < size; y++)
-        {
-            for (int x = 0; x < size; x++)
+            if (cursCol.dragOk)
             {
-                t.SetPixel(x, y, color);
+                Vector3 worldPos = Camera.main.ScreenToWorldPoint(
+                    new Vector3(Input.mousePosition.x, Input.mousePosition.y, hit.distance));
+                worldPos = new Vector3(worldPos.x, worldPos.y, hitObject.transform.position.z);
+                hitObject.rigidbody.MovePosition(worldPos);
+                Debug.Log("dragging");
+            }
+            else
+            {
+                cursCol = null;
             }
         }
-        t.Apply();
-    }
+        
 
+	}
 }
