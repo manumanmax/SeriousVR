@@ -12,39 +12,50 @@ public class CameraGrabber : MonoBehaviour
 
     public bool display = false;
     public bool dragOk = false;
+    public bool stopDrag = false;
 
     private GameObject objectDragged = null;
     private RaycastHit hitOfObjectDragged;
 
-    private Camera camera;
+    private bool buttonDown;
+    private bool buttonUp;
 
 
-    // Use this for initialization
-    void Start()
-    {
-        camera = Camera.main;
-    }
+    private GameObject[] receivers;
+
     private void Awake()
     {
+        buttonDown = false;
+        buttonUp = false;
+
+        receivers = GameObject.FindGameObjectsWithTag("receiver");
         t = new Texture2D(size, size, TextureFormat.RGB24, true);
         t.name = "Procedural Texture";
         FillTexture(Color.green);
         cursorPos = new Vector2(Screen.width / 2, Screen.height / 2);
     }
-
-
-
     // Update is called once per frame
     void Update()
     {
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            buttonUp = false;
+            buttonDown = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            buttonUp = true;
+            buttonDown = false;
+        }
+
         ray = Camera.main.ScreenPointToRay(new Vector3(cursorPos.x, cursorPos.y, 0.0f));
-        Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
-        Debug.Log(ray);
+        //Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow);
 
         if (Physics.Raycast(ray, out hit))
         {
             hitObject = hit.transform.gameObject;
+            Debug.Log(hitObject);
             if (hitObject.tag.Equals("grabbable"))
             {
                 display = true;
@@ -66,19 +77,52 @@ public class CameraGrabber : MonoBehaviour
         {
             dragOk = false;
             display = false;
-            
+
             objectDragged = null;
         }
 
 
         if (dragOk)
         {
-            float distance = Vector3.Distance(camera.transform.position,objectDragged.transform.position);
+
+            foreach (GameObject go in receivers)
+            {
+
+                Vector3 camToDraggred = objectDragged.transform.position - transform.position;
+                Vector3 projection = Vector3.Project(camToDraggred, ray.direction) + transform.position;
+                float distanceShootToDragged = Vector3.Distance(projection, go.transform.position);
+                Debug.DrawLine(projection, transform.position, Color.green);
+                Debug.Log(distanceShootToDragged);
+                if (distanceShootToDragged < 2)
+                {
+                    if (go.GetComponent<ReceiverScript>().lockedObject == null)
+                    {
+                        go.GetComponent<ReceiverScript>().lockedObject = objectDragged;
+                        stopDrag = true;
+                    }
+                }
+                else
+                {
+                    // if current cube is the same that is locked
+                    if (objectDragged.Equals(go.GetComponent<ReceiverScript>().lockedObject))
+                    {
+                        go.GetComponent<ReceiverScript>().lockedObject = null;
+                    }
+                    stopDrag = false;
+
+                }
+
+
+            }
+        }
+        if (!stopDrag && dragOk)
+        {
+            float distance = Vector3.Distance(camera.transform.position, objectDragged.transform.position);
 
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(
                 new Vector3(cursorPos.x, cursorPos.y, distance));
             worldPos = new Vector3(worldPos.x, worldPos.y, objectDragged.transform.position.z);
-            objectDragged.rigidbody.MovePosition(worldPos);
+            objectDragged.transform.position = worldPos;
         }
     }
 
