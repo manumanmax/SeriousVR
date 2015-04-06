@@ -55,7 +55,7 @@ public class CameraGrabber : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             hitObject = hit.transform.gameObject;
-            Debug.Log(hitObject);
+            //Debug.Log(hitObject);
             if (hitObject.tag.Equals("grabbable"))
             {
                 display = true;
@@ -91,8 +91,8 @@ public class CameraGrabber : MonoBehaviour
                 Vector3 camToDraggred = objectDragged.transform.position - transform.position;
                 Vector3 projection = Vector3.Project(camToDraggred, ray.direction) + transform.position;
                 float distanceShootToDragged = Vector3.Distance(projection, go.transform.position);
-                Debug.DrawLine(projection, transform.position, Color.green);
-                Debug.Log(distanceShootToDragged);
+                //Debug.DrawLine(projection, transform.position, Color.green);
+                //Debug.Log(distanceShootToDragged);
                 if (distanceShootToDragged < 2)
                 {
                     if (go.GetComponent<ReceiverScript>().lockedObject == null)
