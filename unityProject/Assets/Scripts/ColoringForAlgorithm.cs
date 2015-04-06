@@ -6,7 +6,7 @@ public class ColoringForAlgorithm : MonoBehaviour
     //algorithm final values
     Color color;
     int increment;
-    int startValue;
+    int nbTimes;
 
 
     private GameObject[] receivers;
@@ -17,7 +17,7 @@ public class ColoringForAlgorithm : MonoBehaviour
     {
         receivers = GameObject.FindGameObjectsWithTag("receiver");
 
-        apply(Color.red, 1, 3);
+
 
     }
 
@@ -30,41 +30,59 @@ public class ColoringForAlgorithm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("size of the contener : " + receivers.Length);
         foreach (GameObject go in receivers)
         {
-            if (go.GetComponent<ReceiverScript>().validObject == null)
+            Debug.Log(go.name + " is " + go.GetComponent<ReceiverScript>().validObject);
+            if (go.GetComponent<ReceiverScript>().validObject == false)
             {
                 receiversWellFilled = false;
                 break;
             }
+
             receiversWellFilled = true;
         }
 
         if (receiversWellFilled)
         {
-            Debug.Log("size of the contener : " + receivers.Length);
+            
             foreach (GameObject go in receivers)
             {
                 GameObject lockedObject = go.GetComponent<ReceiverScript>().lockedObject;
                 if (lockedObject != null)
                 {
-                    parse(go);
+                    parse(go.GetComponent<ReceiverScript>().lockedObject);
+                }
+                else
+                {
+                    break;
                 }
 
             }
+            apply(color, increment, nbTimes);
         }
     }
 
     private void parse(GameObject go)
     {
+        Debug.Log(go.name);
         // type
         switch (go.GetComponent<Proprety>().name)
         {
+
             case "initialiser":
                 color = getColor(go.name);
                 break;
             case "increment":
                 increment = getIncrement(go.name);
+                break;
+            case "loopNumber":
+                nbTimes = getNbTimes(go.name);
+                break;
+            case "function":
+
+                break;
+            default:
                 break;
         }
 
@@ -115,9 +133,15 @@ public class ColoringForAlgorithm : MonoBehaviour
         }
     }
 
+    private int getNbTimes(string name)
+    {
+        return int.Parse(name);
+    }
+
     void apply(Color initColor, int increment, int numberOfTimes)
     {
-        if (numberOfTimes != numberOfCubes)
+        Debug.Log("applying + " + initColor + "," + increment + "," + numberOfTimes);
+        if (numberOfTimes > numberOfCubes)
         {
             //TODO: change the texture of the result panel to fail
             return;

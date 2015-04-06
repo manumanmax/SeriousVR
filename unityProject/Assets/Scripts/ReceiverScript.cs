@@ -15,10 +15,15 @@ public class ReceiverScript : MonoBehaviour {
             lockedObject.transform.position = new Vector3(transform.position.x, transform.position.y,lockedObject.transform.position.z);
             if (!receiverType.Equals(""))
             {
+                //Debug.Log("fixing : " + lockedObject.GetComponent<Proprety>().name + " on " + receiverType);
                 // be careful, you get to configure manually cause it's a prefab
                 if (receiverType.Equals(lockedObject.GetComponent<Proprety>().name))
                 {
                     validObject = true;
+                }
+                else
+                {
+                    validObject = false;
                 }
                 
             }
