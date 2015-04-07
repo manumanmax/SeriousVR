@@ -157,8 +157,8 @@ public class ColoringForAlgorithm : MonoBehaviour
             return;
         }
         cubes = GameObject.FindGameObjectsWithTag("changinCube");
-        GameObject tmp = cubes[0];
-        cubes[0] = cubes[2];
+        GameObject tmp = cubes[1];
+        cubes[1] = cubes[2];
         cubes[2] = tmp;
 
         Debug.Log(materials);
