@@ -20,6 +20,7 @@
 \usepackage{graphicx}
 \usepackage{verbatim}
 \usepackage{listings}
+\lstdefinestyle{sharpc}{language=[Sharp]C, frame=lr, rulecolor=\color{blue!80!black}}
 \usepackage[capbesideposition=bottom]{floatrow}
 %\floatsetup{capposition=bottom}
 \usepackage{caption}
@@ -140,7 +141,10 @@ Pour nous avoir prêter l'oculuse VR pendant plusieurs semaines pour faire des t
 \section{Jeu}
 \par Notre jeu consiste à réaliser un algorithme à l'aide de cubes de différents couleurs. Évidemment il ne s'agit pas de les placer dans n'importe quel ordre pour que cela fonctionne.\\
 On a donc pour référence, des cubes de couleur dans une zone dédiée, qui nous indiquent quel résultat on doit obtenir. On aussi des emplacement labellisés qui permettent de se faire une idée du type de cube à déposer pour que cela fonctionne. 
-
+\begin{figure}[h]
+	\includegraphics[scale=0.50]{./images/jeu.png}
+	\caption{Schéma expliquant le principe du jeu}
+	\end{figure}
 
 \chapter{Réalisation}
 \section{Outils}
@@ -219,7 +223,7 @@ Chaque sprint était dédié à une fonctionnalité et ne durait pas plus de que
 	\par L'interface graphique dans la partie qui représente la scène permet de se déplacer dans le monde 3D. De déplacer les objets et de modifier leur taille.
 	Sur la partie droite on a accès au propriétés de l'objet sur lequel on travail.
 	\begin{figure}[h]
-	\includegraphics[scale=0.35]{./images/unity-3D_interface.png}
+	\includegraphics[scale=0.45]{./images/unity-3D_interface.png}
 	\caption{Interface graphique de Unity3D}
 	\end{figure}
 	
@@ -244,18 +248,37 @@ Chaque sprint était dédié à une fonctionnalité et ne durait pas plus de que
 	\caption{Modification de la composante MainColor du matériaux}
 	\end{figure}
 	\par Dans cette exemple nous utilisons l'interface graphique pour obtenir ce résultat. Cela prend quelques minutes tout au plus. La bonne nouvelle est qu'il en va de même dans un script. Cela nécessite quelques minutes pour obtenir le même résultat. Et cela nous servira grandement pour colorier nos cubes.
+	\newpage
 	\section{Scripts}
-	\hypertarget{scriptTarget}{Les} Scripts
+	\hypertarget{scriptTarget}{Les} Scripts sont aussi des composants. Ils ont un rôle primordial dans la création du jeu, c'est d'ailleurs pour les créer que des développeurs sont nécessaires à la création de jeux vidéos.
+	Dans cette section, nous aborderons le script qui est attaché à la caméra (rappel : un script est un composant et la caméra un gameObject). Il permet de saisir les objets, mais bien plus encore. Ensuite le script, cet fois beaucoup plus succinct, qui permet de maintenir et sauvegarder les objets dans leurs récepteurs. Enfin nous aborderons le script qui génère le rendu de l'algorithme.
 	\subsection{Pour la caméra}
-	\subsection{Pour l'algorithme}
+	Dans le projet il est nommé \textit{cameraGrabber} du fait qu'il permet de déplacer les objets. Initialement un autre script permettait de colorer le curseur lorsqu'on peut déplacer un objet, finalement il était plus judicieux de placer cette fonctionnalité   dans le script dont nous parlons. Nous n'allons pas détailler le listing du code, seulement les principales fonctions mais on le rappel : le code est disponible à l'adresse \href{https://github.com/manumanmax/SeriousVR.git}{https://github.com/manumanmax/SeriousVR.git} dans Assets/Scripts.
+	
+	\par D'abord le script utilise la méthode statique\footnote{Une méthode static peut être utilisée sans instanciation d'objet.} Physics.Raycast qui stock dans une variable de type RaycastHit le premier gameObject que le rayon percute. Mais avant on doit convertir le curseur dans les coordonnées du monde 3D. comme suit : 
+	
+	\lstset{style=sharpc}
+\begin{lstlisting}
+ray = Camera.main.ScreenPointToRay(new Vector3(cursorPos.x, cursorPos.y, 0.0f));
+\end{lstlisting}
+	Ainsi un prépare le rayon qu'on va lancer depuis le centre de l'écran. Qui est aussi la position du curseur. Une fois l'objet touché récupéré, on regarde si il à l'étiquette \textit{grabbable}, paramétrable dans les propriétés d'un objet.
+	Si c'est le cas on rempli une texture en vert et on l'applique au centre de l'écran. Sinon on fait la même chose mais en rouge.
+	
+	\par Ensuite, on doit gérer le fait que les récepteurs d'objet on un effet scratch sur les cubes qu'on déplace.
+	
+	\par Enfin
 	\subsection{Pour stocker les objets des récepteurs}
+	\subsection{Pour l'algorithme}
+	
 	\section{Prefabs}
 	\hypertarget{prefabTarget}{Les} Prefabs
+	etiquettes
 	\subsection{Boucle}
 	\subsection{cubes}
 
 \chapter{Difficultés}
 rigidbody
+cursor
 \chapter{Apports personnels}
 
 \chapter{Glossaire}
@@ -264,7 +287,7 @@ rigidbody
 
 \begin{figure}[h]
 	\includegraphics[scale=0.70]{./images/LogoEnsicaenSansTexte.jpg}
-	\caption{JDialog permettant le réglage d'une LED 4 couleurs}
+	%\caption{JDialog permettant le réglage d'une LED 4 couleurs}
 \end{figure}
 \listoffigures
 \end {document}
