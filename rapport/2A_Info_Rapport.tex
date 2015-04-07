@@ -118,34 +118,41 @@ stringstyle=\color[rgb]{0.627,0.126,0.941},
 \tableofcontents
 
 
-\listoffigures
+\newpage
 \section*{Remerciements}
-\par Tout d'abord nous tenons à remercier M. Lebrun pour nous avoir proposer le projet. Pour le suivi du projet et la documentation qu'il nous a fourni.
+\par Tout d'abord nous tenons à remercier M. Lebrun pour nous avoir proposer le projet. Pour son suivi, la documentation et les conseils qu'il nous a fourni.
 Pour nous avoir prêter l'oculuse VR pendant plusieurs semaines pour faire des tests.
+
+
 \chapter{Introduction}
 \par Le projet Oculus VR consiste en la réalisation d'un jeu à but pédagogique. Destiné à la promotion de l'école lors des journées portes ouvertes et des journées de l'étudiant en fin d'année 2015.
-\par La réalisation du projet comprend l'utilisation de la technologie de réalité augmenté \lq\lq{Oculus VR V2} détenu aujourd'hui par le groupe Facebook. Le modèle d'essaye appartient au laboratoire de recherche de l'ENSICAEN. Prêté pour le projet par Gilles Lebrun lors de nos tests.
+\par La réalisation du projet comprend l'utilisation de la technologie de réalité augmenté \''Oculus VR V2\'' détenu aujourd'hui par le groupe Facebook. Le modèle d'essaye appartient au laboratoire de recherche de l'ENSICAEN. Prêté pour le projet par Gilles Lebrun lors de nos tests.
 \begin{figure}[h] 
 	\includegraphics[scale=0.70]{./images/dk2-product.jpg}
 	\caption{Casque Oculus VR kit de developpement version 2}
 \end{figure}
+
+
 \chapter{Contexte}
-\par Aujourd'hui les jeux vidéos étant un média incontournable, beaucoup de société s'oriente vers l'utilisation de ceux si pour promouvoir, divertir, instruire le grand public. Notre projet ce situe entre le ludisme et la pédagogie et évidement, doit promouvoir en un sens, les compétences acquises lors de la formation à l'école.
-\par Pour ce faire nous avons accès à une technologie remise au goût du jour il y a 3 ans, grâce à une campagne Kickstarter : La réalité augmentée.
+\par Aujourd'hui les jeux vidéos étant un média incontournable, beaucoup de société s'oriente vers l'utilisation de ceux-ci pour promouvoir, divertir, instruire le grand public. Notre projet ce situe entre le ludisme et la pédagogie et évidement, doit promouvoir en un sens, les compétences acquises lors de la formation à l'école.
+\par Pour ce faire nous avons accès à une technologie remise au goût du jour il y a 3 ans, grâce à une campagne Kickstarter\footnote{Kickstarter : Plateform collaborative de participation en ligne à des projets divers.} : La réalité augmentée.
+
 
 \chapter{Réalisation}
-
-\section{Choix du moteur}
+\section{Outils}
+\subsection{Choix du moteur}
 \par Le choix du moteur\footnote{moteur de jeu : Logiciel permettant de réaliser des jeux vidéos grâce à une base logiciel conséquente, le code qu'on y ajoute et éventuellement une interface graphique et des scripts pré-existants.} est une partie important du projet. Même si avant même de commencer le projet nous avions déjà une idée du moteur que nous souhaitions utiliser, nous avons joué le jeu et essayer les deux logiciels. \`A savoir Blender Game Engine, un logiciel gratuit qui utilise python pour le rendu et Unity qui est un peu plus reconnu dans le monde professionnel mais payant. Unity prend en charge le JavaScript, le Boo et le C\# comme langage de programmation.
 
 \par Comme nous sommes plus à l'aise avec le Java Unity marque un point avec le C\#, qui est facile à prendre en main quand on connait le Java. Ensuite lors de nos tests nous avons remarqué que l'interface de Blender est difficile à prendre en main. Elle nécessite de prendre en main un minimum de raccourcis clavier. Sans quoi les dizaines de boutons de l'interface sont un problème. Nous n'avons donc jamais produire un jeu en python avec Blender en une semaine de tests.
-\par Par contre Unity est très facile à prendre en main. L'interface est assez agréable à prendre en main.\\Au final voici la liste des avantages et inconvénients de chacun des deux logiciels :
+\par Par contre Unity est très facile à prendre en main. L'interface est assez agréable et simple d'utilisation.
+\\Au final, voici la liste des avantages et inconvénients de chacun des deux logiciels :
 
   \begin{description}
   	\item \b{Blender Game Engine :}
   	\begin{itemize}
   		\item Interface difficile à prendre en main.
   		\item Reprendre le python pour programmer.
+  		\item Pas d'intégration \''simple\'' de l'oculus.
   		\item Pas d'éditeur de script convivial.
   		\item Gratuit.
   		\item Beaucoup de tutoriels et d'aide sur internet.
@@ -156,17 +163,65 @@ Pour nous avoir prêter l'oculuse VR pendant plusieurs semaines pour faire des t
   			\item Pas de mode dédié à la modélisation d'objets.
   			\item Payant.
   			\item MonoDevelop\footnote{MonoDevelop : IDE proposé par unity pour éditer les scripts qu'on attache au jeu.} peu pratique.
+  			\item Kit d'intégration oculus développé pour Unity 3D.
   			\item Facile à prendre en main.
   			\item Possibilité de développer avec un langage objet (C\#).
   			\item Compatible avec Visual Studio.
   		\end{itemize}
   \end{description}
+  
+  \par Après s'être renseigner nous avons vu qu'il était possible de travailler à sur Unity sans payer (version d'évaluation). Comme le projet n'est pas utilisé à des fins commerciales, pas de soucis.
+  \par Nous avons donc choisi Unity couplé au C\# pour les scripts. Nous détaillerons ce point juste après.
+  
+  \subsection{Le langage de programmation}
+  \par Le langage de programmation ne nous été pas imposé. Donc nous nous sommes tournés rapidement vers le plus familier, le C\#. Un langage objet qui ressemble beaucoup au Java. Utilisé beaucoup pour développer des application pour Windows.
+  \par Nous avons aussi testé le JavaScript mais pas le Boo. En récupérant des morceaux de codes sur internet (souvent disponible dans les 3 langages) on peut facilement porter un script d'un langage à un autre.
+  Par contre on ne peut pas faire appel à un script JavaScript dans un script C\# par exemple. Donc il faut que le langage de programmation soit unifié.
 
-\section{Outils}
-\section{Composants}
-\chapter{Difficultés}
+
+\subsection{Environnement de développement}
+\par Comme nous l'avons précisé plus tôt, Unity propose un environnement de développement (MonoDevelop). Il est sommaire mais plutôt efficace. Cependant il n'est pas parfaitement au point et laisse à désirer parfois.
+Comme nous développons sous Windows, VisualStudio Community (pour la version gratuite) est disponible. Et il propose un pluging pour Unity ce qui fut une fort bonne nouvelle.
+\par Ce pluging donne accès à des fonctionnalités comme l'attachement du script à Unity pour détecter les erreurs liés à la bibliothèque de Unity sans lancer le jeu. Une autocomplétion qui prend aussi bien en charge le C\# que la bibliothèque Unity, ce qui n'est pas le cas de MonoDevelop. Et un gestionnaire de version plus poussé que sur MonoDevelop mais qui laisse assez septique parfois tout de même.
+Au final, pour la gestion de version, GitShell et les linges de commande étaient nettement plus efficace. Le dépôt GitHub est disponible \href{https://github.com/manumanmax/SeriousVR.git}{ici}.
+
+\section{Développement}
+\subsection{Prise en main}
+
+\par Nous avons commencé par une longue phase de prise en main. D'abord de l'interface de Unity, ce qui fut assez rapide. Puis des scripts, ce qui prit beaucoup plus de temps.
+Unity propose tout d'abord une classe MonoBehavior. Celle-ci implémente les méthodes classiques comme \''start\'' et \''update\'' qui sont respectivement lancées à l'instanciation de la classe et toute les frames\footnote{Frame: Anglissisme qui désigne une image générée par le jeu. Qui s'affiche entre 30 et 60 fois par seconde généralement.}. 
+L'oculus VR nous a aussi pris beaucoup de temps. C'est une technologie assez capricieuse car il faut faire attention à la compatibilité des pilotes. Que l'application dédiée soit installée sur un système d'exploitation sans trop de virus. Il ne faut pas de résolution d'affichage ou propriété d'affichage un peu exotiques. Sinon même un simple jeu de démonstration ne pourra pas se lancer correctement.
+Et même une fois avec testé une application on ne peut pas être certain que cela dur.
+\par Lors de nos tests nous avons quand même pu lancer la démonstration \''Toscany\'' offerte dans l'API Oculus. Nous avons pu remarquer que le système requière un ordinateur avec une carte graphique assez puissante (Gefore GTX récent ou équivalent, parfaitement suffisant). Et on se laisse prendre au jeu de la perspective facilement. Attention tout de même à ne pas en abuser car des effets de nausées peuvent être ressentis rapidement. 
+Quand bien même, une fois la caméra intégrée à une scène Unity et l'exportation faite. Nous avons pu voir qu'il était simple d'utiliser l'Oculus avec Unity 3D.
+\subsection{Sprints}
+\par Nous avons tenté de faire un développement régulier mais ce ne fut pas évident avec les cours en parallèle du projet. Le développement c'est plus fait sous forme de sprints.
+D'abord pour nos différents tests, puis pour la conception des différentes briques du jeu final.
+Chaque sprint était dédié à une fonctionnalité et ne durait pas plus de quelques heures. Ce qui, au final, répartissait bien la charge de travail, permettait d'implémenter des composants atomique et de mieux apprécier  l'avancement du projet.
+
+\subsection{Répartition des tâches}
+\par Nous nous sommes réparti les test, Benjamin plutôt le côté modélisation et affichage de labels, Emmanuel plutôt le côté algorithmique et intégration des scripts.
+\par Le dépôt GitHub était partagé donc nous travaillions sur des branches différentes. Au final nous n'avons donc pas défini d'intégrateur.
+\par Emmanuel c'est chargé de la relation avec M. Lebrun, des tests de l'oculus et de la mise en place du niveau de la version finale.
+
+\newpage
 
 \chapter{Résultats}
+
+	\section{Scène}
+	\subsection{Objets}
+	\subsection{Matériaux}
+	\section{Scripts}
+	\subsection{Pour la caméra}
+	\subsection{Pour l'algorithme}
+	\subsection{Pour stocker les objets des récepteurs}
+	\secton{Prefabs}
+	\subsection{Boucle}
+	\subsection{cubes}
+
+\chapter{Difficultés}
+
+\chapter{Apports personnels}
 
 \chapter{Glossaire}
 
@@ -176,5 +231,5 @@ Pour nous avoir prêter l'oculuse VR pendant plusieurs semaines pour faire des t
 	\includegraphics[scale=0.70]{./images/LogoEnsicaenSansTexte.jpg}
 	\caption{JDialog permettant le réglage d'une LED 4 couleurs}
 \end{figure}
-
+\listoffigures
 \end {document}
