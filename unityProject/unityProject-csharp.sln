@@ -23,7 +23,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																	GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																		GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																																																						GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> parent of a958f99... move terrain, applying textures
