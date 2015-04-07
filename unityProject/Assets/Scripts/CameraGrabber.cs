@@ -100,7 +100,8 @@ public class CameraGrabber : MonoBehaviour
                 Vector3 camToDraggred = objectDragged.transform.position - transform.position;
                 Vector3 projection = Vector3.Project(camToDraggred, ray.direction) + transform.position;
                 float distanceShootToDragged = Vector3.Distance(projection, go.transform.position);
-                //Debug.DrawLine(projection, transform.position, Color.green);
+                Debug.DrawLine(projection, transform.position, Color.green);
+                Debug.DrawLine(objectDragged.transform.position, projection, Color.red);
                 //Debug.Log(distanceShootToDragged);
                 if (distanceShootToDragged < 2)
                 {
