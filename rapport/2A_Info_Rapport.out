@@ -1,15 +1,27 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
 \BOOKMARK [0][-]{chapter.2}{Contexte}{}% 2
-\BOOKMARK [0][-]{chapter.3}{R\351alisation}{}% 3
-\BOOKMARK [1][-]{section.3.1}{Outils}{chapter.3}% 4
-\BOOKMARK [2][-]{subsection.3.1.1}{Choix du moteur}{section.3.1}% 5
-\BOOKMARK [2][-]{subsection.3.1.2}{Le langage de programmation}{section.3.1}% 6
-\BOOKMARK [2][-]{subsection.3.1.3}{Environnement de d\351veloppement}{section.3.1}% 7
-\BOOKMARK [1][-]{section.3.2}{D\351veloppement}{chapter.3}% 8
-\BOOKMARK [2][-]{subsection.3.2.1}{Prise en main}{section.3.2}% 9
-\BOOKMARK [2][-]{subsection.3.2.2}{Sprints}{section.3.2}% 10
-\BOOKMARK [2][-]{subsection.3.2.3}{R\351partition des t\342ches}{section.3.2}% 11
-\BOOKMARK [0][-]{chapter.4}{R\351sultats}{}% 12
-\BOOKMARK [0][-]{chapter.5}{Difficult\351s}{}% 13
-\BOOKMARK [0][-]{chapter.6}{Glossaire}{}% 14
-\BOOKMARK [0][-]{chapter.7}{Annexes}{}% 15
+\BOOKMARK [1][-]{section.2.1}{Jeu}{chapter.2}% 3
+\BOOKMARK [0][-]{chapter.3}{R\351alisation}{}% 4
+\BOOKMARK [1][-]{section.3.1}{Outils}{chapter.3}% 5
+\BOOKMARK [2][-]{subsection.3.1.1}{Choix du moteur}{section.3.1}% 6
+\BOOKMARK [2][-]{subsection.3.1.2}{Le langage de programmation}{section.3.1}% 7
+\BOOKMARK [2][-]{subsection.3.1.3}{Environnement de d\351veloppement}{section.3.1}% 8
+\BOOKMARK [1][-]{section.3.2}{D\351veloppement}{chapter.3}% 9
+\BOOKMARK [2][-]{subsection.3.2.1}{Prise en main}{section.3.2}% 10
+\BOOKMARK [2][-]{subsection.3.2.2}{Sprints}{section.3.2}% 11
+\BOOKMARK [2][-]{subsection.3.2.3}{R\351partition des t\342ches}{section.3.2}% 12
+\BOOKMARK [0][-]{chapter.4}{R\351sultats}{}% 13
+\BOOKMARK [1][-]{section.4.1}{Sc\350ne}{chapter.4}% 14
+\BOOKMARK [2][-]{subsection.4.1.1}{Objets}{section.4.1}% 15
+\BOOKMARK [2][-]{subsection.4.1.2}{Mat\351riaux}{section.4.1}% 16
+\BOOKMARK [1][-]{section.4.2}{Scripts}{chapter.4}% 17
+\BOOKMARK [2][-]{subsection.4.2.1}{Pour la cam\351ra}{section.4.2}% 18
+\BOOKMARK [2][-]{subsection.4.2.2}{Pour l'algorithme}{section.4.2}% 19
+\BOOKMARK [2][-]{subsection.4.2.3}{Pour stocker les objets des r\351cepteurs}{section.4.2}% 20
+\BOOKMARK [1][-]{section.4.3}{Prefabs}{chapter.4}% 21
+\BOOKMARK [2][-]{subsection.4.3.1}{Boucle}{section.4.3}% 22
+\BOOKMARK [2][-]{subsection.4.3.2}{cubes}{section.4.3}% 23
+\BOOKMARK [0][-]{chapter.5}{Difficult\351s}{}% 24
+\BOOKMARK [0][-]{chapter.6}{Apports personnels}{}% 25
+\BOOKMARK [0][-]{chapter.7}{Glossaire}{}% 26
+\BOOKMARK [0][-]{chapter.8}{Annexes}{}% 27

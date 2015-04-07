@@ -137,6 +137,10 @@ Pour nous avoir prêter l'oculuse VR pendant plusieurs semaines pour faire des t
 \par Aujourd'hui les jeux vidéos étant un média incontournable, beaucoup de société s'oriente vers l'utilisation de ceux-ci pour promouvoir, divertir, instruire le grand public. Notre projet ce situe entre le ludisme et la pédagogie et évidement, doit promouvoir en un sens, les compétences acquises lors de la formation à l'école.
 \par Pour ce faire nous avons accès à une technologie remise au goût du jour il y a 3 ans, grâce à une campagne Kickstarter\footnote{Kickstarter : Plateform collaborative de participation en ligne à des projets divers.} : La réalité augmentée.
 
+\section{Jeu}
+\par Notre jeu consiste à réaliser un algorithme à l'aide de cubes de différents couleurs. Évidemment il ne s'agit pas de les placer dans n'importe quel ordre pour que cela fonctionne.\\
+On a donc pour référence, des cubes de couleur dans une zone dédiée, qui nous indiquent quel résultat on doit obtenir. On aussi des emplacement labellisés qui permettent de se faire une idée du type de cube à déposer pour que cela fonctionne. 
+
 
 \chapter{Réalisation}
 \section{Outils}
@@ -148,7 +152,7 @@ Pour nous avoir prêter l'oculuse VR pendant plusieurs semaines pour faire des t
 \\Au final, voici la liste des avantages et inconvénients de chacun des deux logiciels :
 
   \begin{description}
-  	\item \b{Blender Game Engine :}
+  	\item \textbf{Blender Game Engine :}
   	\begin{itemize}
   		\item Interface difficile à prendre en main.
   		\item Reprendre le python pour programmer.
@@ -158,7 +162,7 @@ Pour nous avoir prêter l'oculuse VR pendant plusieurs semaines pour faire des t
   		\item Beaucoup de tutoriels et d'aide sur internet.
   		\item Un mode pour la modélisation et un mode pour créer des jeux.
   	\end{itemize}
-  	\item \b{Unity 3D :}
+  	\item \textbf{Unity 3D :}
   		\begin{itemize}
   			\item Pas de mode dédié à la modélisation d'objets.
   			\item Payant.
@@ -207,20 +211,51 @@ Chaque sprint était dédié à une fonctionnalité et ne durait pas plus de que
 \newpage
 
 \chapter{Résultats}
-
+\par Le jeu à nécessité plusieurs points de concentration. D'abord la réalisation d'une scène qui regroupe tous les éléments nécessaires à la réalisation d'un algorithme. Une scène peu être inter-changée et on peut sauvegarder des paramètres de la scène précédente si nécessaire. Dans notre cas, une seule scène est utilisée, ce qui facilite un peu les choses. 
+\par Elle contient des \''GameObject\'', types primitifs de Unity 3D auquel on peut attacher des composants. Plus de détails seront données dans la partie \textit{objet} qui suit.
 	\section{Scène}
+	\par Lorsqu'on lance Unity3D la dernière scène est chargée si on travaillait sur une scène. Dans le cas contraire elle est automatiquement crée et appelée level1. Non n'avions donc rien à faire pour créer la scène et déjà nous pouvions la lancer.
+	Pour la remplir, on peut utiliser les objets primitifs de Unity3D comme des cubes, plans ou sphères (assez limité). Fort heureusement on peut importer des modèles 3D d'autres éditeurs, comme Blender par exemple. C'est très simple, on ouvre le dossier et un cliquer glisser suffit pour l'ajouter dans le projet.
+	\par L'interface graphique dans la partie qui représente la scène permet de se déplacer dans le monde 3D. De déplacer les objets et de modifier leur taille.
+	Sur la partie droite on a accès au propriétés de l'objet sur lequel on travail.
+	\begin{figure}[h]
+	\includegraphics[scale=0.35]{./images/unity-3D_interface.png}
+	\caption{Interface graphique de Unity3D}
+	\end{figure}
+	
+	\newpage
 	\subsection{Objets}
+	\par Sur la scène nous venons de dire qu'il y a des \textit{GameObject}, et ils sont très importants. En effet, même un objet invisible dans le jeu peut être très utile.
+	Les objets ou gameObjects on la particularité se voir greffer un certain nombre de composants, primitif à Unity3D ou non, qui eux même peuvent être modifiés. Voir \hyperlink{prefabTarget}{ici} pour aller encore plus loin avec les prefabs.
+
+	\par Dans le projet nous avons des plans pour faire les murs et les écrans. Ils ont un matériaux, qui lui possède une texture\footnote{Texture : Image sur laquelle les rayons lumineux vont se projeter}. Les plateformes, elles, sont brutes (sans matériaux) mais comme tous les objets visibles à l'écran elles possède un \textit{meshRenderer} qui leur permet de renvoyer les rayons lumineux. D'ailleurs c'est pour cette même raison que la caméra n'a pas de MeshRenderer. C'est aussi le cas pour l'objet \textit{Algorithm} qui lui ne possède qu'un script. Nous en parlerons dans une \hyperlink{prefabTarget}{section} dédiée.
+
 	\subsection{Matériaux}
+	\par Les matériaux sont une primitive de Unity3D et si nous avons décidé d'en parler c'est que dans la section qui suit, ils vont servir. Notamment à changer les cubes de couleur.\\
+	C'est donc comme son nom l'indique, un composant\footnote{Composant : Nous appellerons dorénavant les primitives et script qu'on greffe à un GameObject : un composant, traduit de component dans Unity3D} indique comment la lumière va se refléter. Ils font intervenir des shaders que nous n'allons pas aborder dans se rapport.\\
+	Un matériaux à une couleur, un type de réfraction de la lumière (diffus ou/et spéculaire généralement) et une texture. La texture et la couleur son complémentaires. C'est-à-dire qu'on peut colorer une texture sans la modifier, juste par additivité avec la couleur du matériaux.
+	\begin{figure}[h]
+	\includegraphics[scale=0.50]{./images/materiaux.png}
+	\caption{Colorer avec ou sans texture}
+	\end{figure}
+	\par Exactement la même scène mais cette fois avec de la couleur dans le matériaux en plus de la texture. On obtient un effet cuivré.
+	\begin{figure}[h]
+	\includegraphics[scale=0.40]{./images/materiaux_cuivre.png}
+	\caption{Modification de la composante MainColor du matériaux}
+	\end{figure}
+	\par Dans cette exemple nous utilisons l'interface graphique pour obtenir ce résultat. Cela prend quelques minutes tout au plus. La bonne nouvelle est qu'il en va de même dans un script. Cela nécessite quelques minutes pour obtenir le même résultat. Et cela nous servira grandement pour colorier nos cubes.
 	\section{Scripts}
+	\hypertarget{scriptTarget}{Les} Scripts
 	\subsection{Pour la caméra}
 	\subsection{Pour l'algorithme}
 	\subsection{Pour stocker les objets des récepteurs}
-	\secton{Prefabs}
+	\section{Prefabs}
+	\hypertarget{prefabTarget}{Les} Prefabs
 	\subsection{Boucle}
 	\subsection{cubes}
 
 \chapter{Difficultés}
-
+rigidbody
 \chapter{Apports personnels}
 
 \chapter{Glossaire}
