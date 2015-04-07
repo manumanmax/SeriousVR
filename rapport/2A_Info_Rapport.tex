@@ -89,7 +89,7 @@ stringstyle=\color[rgb]{0.627,0.126,0.941},
 
   \begin{titlepage}
   \centering
-      {\large \textsc{école nationale supérieur d\rq{}ingénieurs de caen}}\\
+      {\large \textsc{école nationale supérieur d'ingénieurs de caen}}\\
       \textsc{Dans le cadre du projet 2A}\\
     \vspace{1cm}
     \vspace{1cm}
@@ -116,14 +116,52 @@ stringstyle=\color[rgb]{0.627,0.126,0.941},
 \setlength{\topmargin}{-2cm}
 
 \tableofcontents
-\section{Remerciements}
+
 
 \listoffigures
+\section*{Remerciements}
+\par Tout d'abord nous tenons à remercier M. Lebrun pour nous avoir proposer le projet. Pour le suivi du projet et la documentation qu'il nous a fourni.
+Pour nous avoir prêter l'oculuse VR pendant plusieurs semaines pour faire des tests.
 \chapter{Introduction}
-
+\par Le projet Oculus VR consiste en la réalisation d'un jeu à but pédagogique. Destiné à la promotion de l'école lors des journées portes ouvertes et des journées de l'étudiant en fin d'année 2015.
+\par La réalisation du projet comprend l'utilisation de la technologie de réalité augmenté \lq\lq{Oculus VR V2} détenu aujourd'hui par le groupe Facebook. Le modèle d'essaye appartient au laboratoire de recherche de l'ENSICAEN. Prêté pour le projet par Gilles Lebrun lors de nos tests.
+\begin{figure}[h] 
+	\includegraphics[scale=0.70]{./images/dk2-product.jpg}
+	\caption{Casque Oculus VR kit de developpement version 2}
+\end{figure}
 \chapter{Contexte}
+\par Aujourd'hui les jeux vidéos étant un média incontournable, beaucoup de société s'oriente vers l'utilisation de ceux si pour promouvoir, divertir, instruire le grand public. Notre projet ce situe entre le ludisme et la pédagogie et évidement, doit promouvoir en un sens, les compétences acquises lors de la formation à l'école.
+\par Pour ce faire nous avons accès à une technologie remise au goût du jour il y a 3 ans, grâce à une campagne Kickstarter : La réalité augmentée.
 
 \chapter{Réalisation}
+
+\section{Choix du moteur}
+\par Le choix du moteur\footnote{moteur de jeu : Logiciel permettant de réaliser des jeux vidéos grâce à une base logiciel conséquente, le code qu'on y ajoute et éventuellement une interface graphique et des scripts pré-existants.} est une partie important du projet. Même si avant même de commencer le projet nous avions déjà une idée du moteur que nous souhaitions utiliser, nous avons joué le jeu et essayer les deux logiciels. \`A savoir Blender Game Engine, un logiciel gratuit qui utilise python pour le rendu et Unity qui est un peu plus reconnu dans le monde professionnel mais payant. Unity prend en charge le JavaScript, le Boo et le C\# comme langage de programmation.
+
+\par Comme nous sommes plus à l'aise avec le Java Unity marque un point avec le C\#, qui est facile à prendre en main quand on connait le Java. Ensuite lors de nos tests nous avons remarqué que l'interface de Blender est difficile à prendre en main. Elle nécessite de prendre en main un minimum de raccourcis clavier. Sans quoi les dizaines de boutons de l'interface sont un problème. Nous n'avons donc jamais produire un jeu en python avec Blender en une semaine de tests.
+\par Par contre Unity est très facile à prendre en main. L'interface est assez agréable à prendre en main.\\Au final voici la liste des avantages et inconvénients de chacun des deux logiciels :
+
+  \begin{description}
+  	\item \b{Blender Game Engine :}
+  	\begin{itemize}
+  		\item Interface difficile à prendre en main.
+  		\item Reprendre le python pour programmer.
+  		\item Pas d'éditeur de script convivial.
+  		\item Gratuit.
+  		\item Beaucoup de tutoriels et d'aide sur internet.
+  		\item Un mode pour la modélisation et un mode pour créer des jeux.
+  	\end{itemize}
+  	\item \b{Unity 3D :}
+  		\begin{itemize}
+  			\item Pas de mode dédié à la modélisation d'objets.
+  			\item Payant.
+  			\item MonoDevelop\footnote{MonoDevelop : IDE proposé par unity pour éditer les scripts qu'on attache au jeu.} peu pratique.
+  			\item Facile à prendre en main.
+  			\item Possibilité de développer avec un langage objet (C\#).
+  			\item Compatible avec Visual Studio.
+  		\end{itemize}
+  \end{description}
+
 \section{Outils}
 \section{Composants}
 \chapter{Difficultés}
