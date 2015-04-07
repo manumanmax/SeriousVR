@@ -25,6 +25,8 @@ public class CameraGrabber : MonoBehaviour
 
     private void Awake()
     {
+
+        Screen.lockCursor = true;
         buttonDown = false;
         buttonUp = false;
 
@@ -37,6 +39,13 @@ public class CameraGrabber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+            if (Screen.lockCursor)
+                Screen.lockCursor = false;
+            else
+            {
+                Screen.lockCursor = true;
+            }
 
         if (Input.GetMouseButtonDown(0))
         {

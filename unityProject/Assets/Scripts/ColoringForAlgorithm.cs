@@ -13,12 +13,21 @@ public class ColoringForAlgorithm : MonoBehaviour
     private bool receiversWellFilled;
     private GameObject[] cubes;
     public int numberOfCubes = 3;
+    Material[] materials;
+
+
+
     void Awake()
     {
         receivers = GameObject.FindGameObjectsWithTag("receiver");
 
-
-
+        materials = new Material[numberOfCubes];
+        materials[0] = (Instantiate(Resources.Load("Materials/red", typeof(Material))) as Material);
+        materials[0].color = Color.red;
+        materials[1] = (Instantiate(Resources.Load("Materials/green", typeof(Material))) as Material);
+        materials[1].color = Color.green;
+        materials[2] = (Instantiate(Resources.Load("Materials/blue", typeof(Material))) as Material);
+        materials[2].color = Color.blue;
     }
 
     // Use this for initialization
@@ -45,7 +54,7 @@ public class ColoringForAlgorithm : MonoBehaviour
 
         if (receiversWellFilled)
         {
-            
+
             foreach (GameObject go in receivers)
             {
                 GameObject lockedObject = go.GetComponent<ReceiverScript>().lockedObject;
@@ -138,6 +147,7 @@ public class ColoringForAlgorithm : MonoBehaviour
         return int.Parse(name);
     }
 
+ 
     void apply(Color initColor, int increment, int numberOfTimes)
     {
         Debug.Log("applying + " + initColor + "," + increment + "," + numberOfTimes);
@@ -150,10 +160,7 @@ public class ColoringForAlgorithm : MonoBehaviour
         GameObject tmp = cubes[0];
         cubes[0] = cubes[2];
         cubes[2] = tmp;
-        Material[] materials = new Material[numberOfCubes];
-        materials[0] = (Instantiate(Resources.Load("Materials/red", typeof(Material))) as Material);
-        materials[1] = (Instantiate(Resources.Load("Materials/green", typeof(Material))) as Material);
-        materials[2] = (Instantiate(Resources.Load("Materials/blue", typeof(Material))) as Material);
+
         Debug.Log(materials);
 
         for (int i = 0; i < numberOfTimes; i += increment)
@@ -164,9 +171,9 @@ public class ColoringForAlgorithm : MonoBehaviour
             }
             else
             {
-                cubes[i].renderer.material = materials[i];
+
+                cubes[i].renderer.material.color = (materials[i].color + initColor) / 2;
             }
         }
-
     }
 }
