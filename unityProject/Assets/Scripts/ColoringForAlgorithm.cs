@@ -6,12 +6,13 @@ public class ColoringForAlgorithm : MonoBehaviour
     //algorithm final values
     Color color;
     int increment;
-    int nbTimes;
+    int nbTimes = 0;
+    int initVal;
 
 
     private GameObject[] receivers;
     private bool receiversWellFilled;
-    private GameObject[] cubes;
+    private GameObject[] cubes = null;
     public int numberOfCubes = 3;
     Material[] materials;
 
@@ -33,6 +34,7 @@ public class ColoringForAlgorithm : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
 
     }
 
@@ -70,6 +72,36 @@ public class ColoringForAlgorithm : MonoBehaviour
             }
             apply(color, increment, nbTimes);
         }
+        else
+        {
+            int endVal = 0;
+            if (increment > 0)
+                for (int i = initVal; i < nbTimes * increment; i += increment)
+                {
+                    if (i < 0)
+                    {
+                        //TODO: change the texture of the result panel to fail
+                    }
+                    else
+                    {
+                        if (cubes != null)
+                            cubes[i].renderer.material.color = Color.white;
+                    }
+                }
+            else if(increment < 0)
+                for (int i = initVal; i > nbTimes * increment; i += increment)
+                {
+                    if (i < 0)
+                    {
+                        //TODO: change the texture of the result panel to fail
+                    }
+                    else
+                    {
+                        if (cubes != null)
+                            cubes[i].renderer.material.color = Color.white;
+                    }
+                }
+        }
     }
 
     private void parse(GameObject go)
@@ -87,6 +119,9 @@ public class ColoringForAlgorithm : MonoBehaviour
                 break;
             case "loopNumber":
                 nbTimes = getNbTimes(go.name);
+                break;
+            case "initNumber":
+                initVal = getNbTimes(go.name);
                 break;
             case "function":
 
@@ -147,33 +182,47 @@ public class ColoringForAlgorithm : MonoBehaviour
         return int.Parse(name);
     }
 
- 
+
     void apply(Color initColor, int increment, int numberOfTimes)
     {
         Debug.Log("applying + " + initColor + "," + increment + "," + numberOfTimes);
         if (numberOfTimes > numberOfCubes)
         {
             //TODO: change the texture of the result panel to fail
-            return;
+            //return;
         }
         cubes = GameObject.FindGameObjectsWithTag("changinCube");
         GameObject tmp = cubes[1];
         cubes[1] = cubes[2];
         cubes[2] = tmp;
-
         Debug.Log(materials);
 
-        for (int i = 0; i < numberOfTimes; i += increment)
-        {
-            if (i < 0)
+        int endVal = 0;
+        if (increment > 0)
+            for (int i = initVal-1; i < nbTimes; i += increment)
             {
-                //TODO: change the texture of the result panel to fail
+                if (i < 0)
+                {
+                    //TODO: change the texture of the result panel to fail
+                }
+                else
+                {
+                    if (cubes != null)
+                        cubes[i].renderer.material.color = (materials[i].color + initColor) / 2;
+                }
             }
-            else
+        else if (increment < 0)
+            for (int i = initVal-1; i > nbTimes; i += increment)
             {
-
-                cubes[i].renderer.material.color = (materials[i].color + initColor) / 2;
+                if (i < 0)
+                {
+                    //TODO: change the texture of the result panel to fail
+                }
+                else
+                {
+                    if (cubes != null)
+                        cubes[i].renderer.material.color = (materials[i].color + initColor) / 2;
+                }
             }
-        }
     }
 }
