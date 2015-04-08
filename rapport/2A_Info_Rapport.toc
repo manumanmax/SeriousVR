@@ -21,8 +21,8 @@
 \contentsline {section}{\numberline {4.3}Prefabs}{11}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Boucle}{12}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}cubes}{12}{subsection.4.3.2}
-\contentsline {chapter}{\numberline {5}Ajouts futures}{13}{chapter.5}
-\contentsline {section}{\numberline {5.1}De nouveaux niveau}{13}{section.5.1}
+\contentsline {chapter}{\numberline {5}Ajouts futurs}{13}{chapter.5}
+\contentsline {section}{\numberline {5.1}De nouveaux niveaux}{13}{section.5.1}
 \contentsline {section}{\numberline {5.2}De nouveaux composants}{13}{section.5.2}
 \contentsline {section}{\numberline {5.3}Design}{13}{section.5.3}
 \contentsline {chapter}{\numberline {6}Difficult\IeC {\'e}s}{14}{chapter.6}
