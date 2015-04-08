@@ -232,20 +232,20 @@ Chaque sprint était dédié à une fonctionnalité et ne durait pas plus de que
 	\par Sur la scène nous venons de dire qu'il y a des \textit{GameObject}, et ils sont très importants. En effet, même un objet invisible dans le jeu peut être très utile.
 	Les objets ou gameObjects on la particularité se voir greffer un certain nombre de composants, primitif à Unity3D ou non, qui eux même peuvent être modifiés. Voir \hyperlink{prefabTarget}{ici} pour aller encore plus loin avec les prefabs.
 
-	\par Dans le projet nous avons des plans pour faire les murs et les écrans. Ils ont un matériaux, qui lui possède une texture\footnote{Texture : Image sur laquelle les rayons lumineux vont se projeter}. Les plateformes, elles, sont brutes (sans matériaux) mais comme tous les objets visibles à l'écran elles possède un \textit{meshRenderer} qui leur permet de renvoyer les rayons lumineux. D'ailleurs c'est pour cette même raison que la caméra n'a pas de MeshRenderer. C'est aussi le cas pour l'objet \textit{Algorithm} qui lui ne possède qu'un script. Nous en parlerons dans une \hyperlink{prefabTarget}{section} dédiée.
+	\par Dans le projet nous avons des plans pour faire les murs et les écrans. Ils ont un matériau, qui lui possède une texture\footnote{Texture : Image sur laquelle les rayons lumineux vont se projeter}. Les plateformes, elles, sont brutes (sans matériaux) mais comme tous les objets visibles à l'écran elles possède un \textit{meshRenderer} qui leur permet de renvoyer les rayons lumineux. D'ailleurs c'est pour cette même raison que la caméra n'a pas de MeshRenderer. C'est aussi le cas pour l'objet \textit{Algorithm} qui lui ne possède qu'un script. Nous en parlerons dans une \hyperlink{prefabTarget}{section} dédiée.
 
 	\subsection{Matériaux}
 	\par Les matériaux sont une primitive de Unity3D et si nous avons décidé d'en parler c'est que dans la section qui suit, ils vont servir. Notamment à changer les cubes de couleur.\\
 	C'est donc comme son nom l'indique, un composant\footnote{Composant : Nous appellerons dorénavant les primitives et script qu'on greffe à un GameObject : un composant, traduit de component dans Unity3D} indique comment la lumière va se refléter. Ils font intervenir des shaders que nous n'allons pas aborder dans se rapport.\\
-	Un matériaux à une couleur, un type de réfraction de la lumière (diffus ou/et spéculaire généralement) et une texture. La texture et la couleur son complémentaires. C'est-à-dire qu'on peut colorer une texture sans la modifier, juste par additivité avec la couleur du matériaux.
+	Un matériau à une couleur, un type de réfraction de la lumière (diffus ou/et spéculaire généralement) et une texture. La texture et la couleur son complémentaires. C'est-à-dire qu'on peut colorer une texture sans la modifier, juste par additivité avec la couleur du matériau.
 	\begin{figure}[h]
 	\includegraphics[scale=0.50]{./images/materiaux.png}
 	\caption{Colorer avec ou sans texture}
 	\end{figure}
-	\par Exactement la même scène mais cette fois avec de la couleur dans le matériaux en plus de la texture. On obtient un effet cuivré.
+	\par Exactement la même scène mais cette fois avec de la couleur dans le matériau en plus de la texture. On obtient un effet cuivré.
 	\begin{figure}[h]
 	\includegraphics[scale=0.40]{./images/materiaux_cuivre.png}
-	\caption{Modification de la composante MainColor du matériaux}
+	\caption{Modification de la composante MainColor du matériau}
 	\end{figure}
 	\par Dans cette exemple nous utilisons l'interface graphique pour obtenir ce résultat. Cela prend quelques minutes tout au plus. La bonne nouvelle est qu'il en va de même dans un script. Cela nécessite quelques minutes pour obtenir le même résultat. Et cela nous servira grandement pour colorier nos cubes.
 	\newpage
@@ -264,30 +264,76 @@ ray = Camera.main.ScreenPointToRay(new Vector3(cursorPos.x, cursorPos.y, 0.0f));
 	Ainsi un prépare le rayon qu'on va lancer depuis le centre de l'écran. Qui est aussi la position du curseur. Une fois l'objet touché récupéré, on regarde si il à l'étiquette \textit{grabbable}, paramétrable dans les propriétés d'un objet.
 	Si c'est le cas on rempli une texture en vert et on l'applique au centre de l'écran. Sinon on fait la même chose mais en rouge.
 	
-	\par Ensuite, on doit gérer le fait que les récepteurs d'objet on un effet scratch sur les cubes qu'on déplace.
+	\par Ensuite, on doit gérer le fait que les récepteurs d'objet on un effet scratch sur les cubes qu'on déplace. Pour expliquer cette partie, nous nous appuierons sur un vue de côté de la scène. Le jeu lancé et la fonction \textit{Debug.drawLine} affichant les traits de couleurs. Ils ne sont donc pas ajoutés sur l'image, ils sont produits en temps réel par l'application. Le vert est le vecteur qui représente la projection du curseur sur le plan de coordonnée z égal à l'objet qu'on déplace. Le rouge est la distance entre l'objet qui est donc verrouillé sur le récepteur et le curseur projeté.
 	
-	\par Enfin
+	\begin{figure}[h]
+	\includegraphics[scale=0.90]{./images/projection.png}
+	\caption{Tracés de debug unity dans le cadre d'une projection selon une normale.}
+	\end{figure}
+	Nous en profiterons pour dire que les outils fournis par Unity3D pour débugger sont très utiles et assez bien pensés. \\Le code qui affiche les lignes est :
+\lstset{style=sharpc}
+	\begin{lstlisting}
+	Debug.DrawLine(projection, transform.position, Color.green);
+	Debug.DrawLine(projection, go.transform.position, Color.red);
+	\end{lstlisting}
+	\par Enfin avec ce vecteur représenté par le trait rouge. On peut savoir grâce à la méthode statique de Vector3, Distance, quel est la distance entre l'objet qu'on bouge et le récepteur. Le récepteur possède un halo dans lequel il attire l'objet, si on en sort on remet l'objet au niveau du curseur.
 	\subsection{Pour stocker les objets des récepteurs}
+	
+	\par Plus simple, le script \textit{ReceiverScript} stock le cube qu'on à déposé dessus. Cela montre un autre aspect du scripting sous Unity3D. On peut stocker des variables ou des gameObjects pour que d'autres scripts y accès. C'est le cas pour le composant  \textit{ lockedObject } contenu dans ce script. La variable qui pointe sur l'objet est donc public, ce qui permettra au script de l'algorithme d'y accéder.
 	\subsection{Pour l'algorithme}
+	\par Pour rebondir sur le fait d'avoir prévu l'accès à l'objet des récepteurs nous allons introduire l'algorithme en lui même. Il est stocké dans un objet vide de la scène, sans quoi il ne serait jamais exécuté.\\
+	Il nous vaut donc les objets stockés dans les récepteurs. On utilise une méthode dédié, inclue dans Unity3D comme ceci :
+	\lstset{style=sharpc}
+	\begin{lstlisting}
+receivers = GameObject.FindGameObjectsWithTag("receiver");
+	\end{lstlisting}
+	\par On comprend donc qu'il faut, comme les cubes, paramétrer l'étiquette des récepteurs pour qu'ils soit reconnus par l'appel de cette méthode.\\
+	Nous avons programmé les récepteurs pour qu'ils ne puissent recevoir qu'un certain type d'objet (incrément, valeur initiale, fonction etc). Donc on peut facilement vérifier que les récepteurs soit bien remplis afin d'être sûr que si on lance l'algorithme, il fonctionnera; même si les valeurs sont mauvaises.
+	
+	La boucle est générée en parsant\footnote{Parser : Le fait de regarder le contenu (ici) d'une chaine de caractère pour en tirer les informations qui nous intéressent.} le nom des objets sur les récepteurs. Une étape nécessaire au remplissage des paramètre de la fonction \textit{apply} du script. Cette méthode additionne les couleurs de la fonction avec la couleur d'initialisation comme suit : 
+	\lstset{style=sharpc}
+	\begin{lstlisting}
+for (int i = 0; i < numberOfTimes; i += increment){
+	cubes[i].renderer.material.color = (materials[i].color + initColor) / 2;
+}
+	\end{lstlisting}
+	\par Ici on modifie l'attribut la couleur du matériau donc on peut aussi avoir des textures sur les cubes finales sans que ça n'impacte le jeu. 
 	
 	\section{Prefabs}
-	\hypertarget{prefabTarget}{Les} Prefabs
-	etiquettes
+	\par \hypertarget{prefabTarget}{Les} Prefabs pour préfabriqué sont des objets ou groupements d'objets que l'on soit voir attribuer les même propriétés. Ils sont donc stockés directement dans un fichier. On peut ensuite les ajouter via l'interface ou par script. Il est intéressant de faire un objet type et une fois qu'il a des propriétés qui nous conviennent, on en fait un préfab pour le réutiliser dans autre scène.
+	
 	\subsection{Boucle}
+	\par Pour réaliser la boucle, on a une imbrication de préfabs. La structure est un préfab, la boucle for est un préfab, les récepteurs sont des préfabs. Ainsi on peut dupliquer tout l'algorithme ou simplement un récepteur à partir du fichier correspondant. L'avantage est que lors qu'on change une propriété du préfab, les objets qui n'ont pas modifié cette propriété antérieurement sont tous affectés.
 	\subsection{cubes}
-
+	\par Les cubes sont un bon exemple de préfab. Ils possède un script, un tag, un matériau. On a donc tendance à copier coller ce genre d'objet fréquemment. Cependant lorsqu'on groupe les objets, si on change le nom du groupe, on ne veut pas que les sous éléments prennent tous le nom du groupe. C'est ce qui se passe pour toutes les propriété du préfab. Lorsqu'on ajoute un composant il est ajouté sur tous. Si on le modifie le préfab, seul les objets qui n'ont pas modifié ce composant sont modifiés.
+	\begin{figure}[h]
+	\includegraphics[scale=0.90]{./images/unity-3D_interface_zoom.png}
+	\caption{Zoom Interface graphique de Unity3D}
+	\end{figure}
+	\par Dans ce zoom sur l'interface vu plus haut provenant d'un projet pris au hasard sur internet. On voit à gauche que les objets : HudWeapon, MainMenuScreen, Radar, SoldierTargetHUD, SoundManager et SoundObjectManager sont des préfabs. Les flèches avant le nom montre que ces préfabs contiennent plusieurs objets.
+	
+\chapter{Ajouts futures}
+\section{De nouveaux niveau}
+\par Avec les différentes fonctionnalités que propose le projet, il est déjà possible d'imaginer de nouveaux niveau. Plus difficiles et plus complets que le niveau 1.
+\section{De nouveaux composants}
+\par On peut imaginer de nouveaux composants qu'il faudrait ajouter au parseur. De nouvelles boucles comme la boucle \textit{tant que} peuvent être ajouter avec un script.\\
+Cela nous conduit aussi à dire qu'on pourrait créer une notion d'héritage\footnote{Héritage : Processus dans le classe une classe reçois les attributs et les méthodes du classe qu'elle spécialise}. Cela permettrait de simplifier la création de nouveaux algorithme et boucles par spécialisation.
+\section{Design}
+\par Il est certains que le design de l'application et des composants peut être grandement amélioré. On peut imaginer des effets scriptés qui donnerait un aspect moins rustique au jeu.
 \chapter{Difficultés}
-rigidbody
-cursor
+\section{Prise en main}
+\par La prise en main de Unity3D parait assez facile après coup. Mais cela n'a pas toujours été simple de travailler sans connaître toutes les possibilités qu'offrent Unity. Il ne faut surtout pas chercher à réinventer la roue car elle fait certainement déjà partie de l'API.
+\section{Le dépôt git}
+\par Nous n'avions jamais travailler avec git pour un projet Unity3D. Déjà pas parfaitement à l'aise avec git, il a fallut qu'un problème d'importation nous empêche d'utiliser l'interface de Unity. Sans quoi les dossier que l'on récupérait depuis GitHub ne fonctionnaient pas.\\
+Au final, il faut inclure tous les fichier sans se poser de question sur le dépôt et cela fonctionne parfaitement.
+\section{Difficultés techniques}
+\par Lorsque l'on déplace un corps rigide (RigidBody), une imprécision peut faire que la position visualisée à l'écran n'est pas la position de l'objet. C'est probablement un bog corrigé dans la dernière version de Unity3D (version 5). Visuellement quand on déplaçait un objet, parfois, il tombait. Donc lorsqu'on le lâchait, il disparaissait du champ de la caméra.\\
+\par Le curseur à posé énormément de problème. Toutes les méthodes disponible sur internet utilise la position du curseur comme référence. Honnêtement il est peut probable qu'un FPS utilise cette position car elle est relative à la position de la souris. Cela nécessite de verrouiller le curseur etc. Donc une solution simple est de supprimer la souris et de placer une texture au centre de l'écran. Cette texture représente notre curseur et la caméra pointe toujours dans sa direction. Cette méthode à corrigé tous les problèmes liées à aux position des objets parfois houleuses.
 \chapter{Apports personnels}
+\par Emmanuel : Même si le temps à manqué, j'ai acquis bon nombre de compétences dans ce projet. D'abord, la connaissance de deux nouvelles technologies : Unity3D et l'OculusVR. J'ai aussi à ma grande surprise, découvert Visual Studio, du fait qu'on avait pas d'autre choix que de développer sous Windows et que MonoDevelop ne me plaisait pas.\\
+Ensuite cela m'a permis une fois de plus de voir qu'il faut beaucoup de temps pour intégrer les mécanisme d'une grande API comme celle proposée par Unity. Et cela me plaît beaucoup aujourd'hui d'en savoir plus. Car je suis certains que je m'en servirais régulièrement à l'avenir.\\
+J'ai pu aborder rapidement le C\#, qui m'a bien plu. Même si je n'ai pas pu utiliser l'aspect objet du langage dans le projet.\\
+Je dirais enfin qu'un projet réalisé à 2 sur un an est difficile à mettre en place. Même si on identifie les risque, le plus risque c'est de ne pas réussi à développer les fonctionnalité nécessaires à un sprint dans le temps imparti. Cela affect tout le projet et sa conduite.
 
-\chapter{Glossaire}
-
-\chapter{Annexes}
-
-\begin{figure}[h]
-	\includegraphics[scale=0.70]{./images/LogoEnsicaenSansTexte.jpg}
-	%\caption{JDialog permettant le réglage d'une LED 4 couleurs}
-\end{figure}
 \listoffigures
 \end {document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.4.15)  8 APR 2015 00:13
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.4.15)  8 APR 2015 02:35
 entering extended mode
 **C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/2A_Info_Rapport.tex
 (C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/2A_Info_Rapport.tex
@@ -811,7 +811,7 @@ Package caption Info: End \AtBeginDocument code.
 (C:\Users\Emmanuel\latex\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
-<./images/LogoEnsicaenSansTexte.jpg, id=111, 183.084pt x 86.724pt>
+<./images/LogoEnsicaenSansTexte.jpg, id=131, 183.084pt x 86.724pt>
 File: ./images/LogoEnsicaenSansTexte.jpg Graphic file (type jpg)
 
 <use ./images/LogoEnsicaenSansTexte.jpg>
@@ -819,14 +819,14 @@ Package pdftex.def Info: ./images/LogoEnsicaenSansTexte.jpg used on input line
 101.
 (pdftex.def)             Requested size: 159.15007pt x 75.38838pt.
 
-<./images/oculus_logo.jpg, id=112, 374.39874pt x 190.7125pt>
+<./images/oculus_logo.jpg, id=132, 374.39874pt x 190.7125pt>
 File: ./images/oculus_logo.jpg Graphic file (type jpg)
 
 <use ./images/oculus_logo.jpg>
 Package pdftex.def Info: ./images/oculus_logo.jpg used on input line 108.
 (pdftex.def)             Requested size: 159.15007pt x 81.06773pt.
 
-<./images/Unity_3D_logo.png, id=113, 328.22626pt x 180.675pt>
+<./images/Unity_3D_logo.png, id=133, 328.22626pt x 180.675pt>
 File: ./images/Unity_3D_logo.png Graphic file (type png)
 
 <use ./images/Unity_3D_logo.png>
@@ -845,104 +845,166 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 4.
-)
-\tf@toc=\write4
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.122 \newpage
-               [1
+l.33 ...line {7}Apports personnels}{16}{chapter.7}
+                                                   [1
 
-]
+])
+\tf@toc=\write4
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 13.59999pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2]
+[2] [3]
 Chapitre 1.
-<./images/dk2-product.jpg, id=167, 552.0625pt x 395.4775pt>
+<./images/dk2-product.jpg, id=196, 552.0625pt x 395.4775pt>
 File: ./images/dk2-product.jpg Graphic file (type jpg)
 
 <use ./images/dk2-product.jpg>
 Package pdftex.def Info: ./images/dk2-product.jpg used on input line 132.
 (pdftex.def)             Requested size: 386.4411pt x 276.83235pt.
- [3
+ [4
 
  <C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/images/dk2-product.jpg>]
 Chapitre 2.
-<./images/jeu.png, id=173, 872.50969pt x 467.49657pt>
+<./images/jeu.png, id=202, 872.50969pt x 467.49657pt>
 File: ./images/jeu.png Graphic file (type png)
  <use ./images/jeu.png>
 Package pdftex.def Info: ./images/jeu.png used on input line 145.
 (pdftex.def)             Requested size: 436.25378pt x 233.74771pt.
 
-[4
+[5
 
  <C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/images/jeu.png>]
 Chapitre 3.
-[5
+[6
 
-] [6] [7]
+] [7] [8]
 Chapitre 4.
-<./images/unity-3D_interface.png, id=195, 963.6pt x 635.37375pt>
+<./images/unity-3D_interface.png, id=224, 963.6pt x 635.37375pt>
 File: ./images/unity-3D_interface.png Graphic file (type png)
 
 <use ./images/unity-3D_interface.png>
 Package pdftex.def Info: ./images/unity-3D_interface.png used on input line 226
 .
 (pdftex.def)             Requested size: 433.616pt x 285.91554pt.
- [8
+ [9
 
  <C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/images/unity-3D_interface.p
 ng>]
-<./images/materiaux.png, id=205, 476.53032pt x 177.66376pt>
+<./images/materiaux.png, id=234, 476.53032pt x 177.66376pt>
 File: ./images/materiaux.png Graphic file (type png)
 
 <use ./images/materiaux.png>
 Package pdftex.def Info: ./images/materiaux.png used on input line 242.
 (pdftex.def)             Requested size: 238.26457pt x 88.83165pt.
 
-<./images/materiaux_cuivre.png, id=206, 279.29344pt x 173.14688pt>
+<./images/materiaux_cuivre.png, id=235, 279.29344pt x 173.14688pt>
 File: ./images/materiaux_cuivre.png Graphic file (type png)
 
 <use ./images/materiaux_cuivre.png>
 Package pdftex.def Info: ./images/materiaux_cuivre.png used on input line 247.
 (pdftex.def)             Requested size: 111.7154pt x 69.25752pt.
- [9 <C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/images/materiaux.png> <C
-:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/images/materiaux_cuivre.png>]
+ [10 <C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/images/materiaux.png> <
+C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/images/materiaux_cuivre.png>]
+
 (C:\Users\Emmanuel\latex\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 262.
 
-! Package inputenc Error: Unicode char \u8:Ã\lst@EC© not set up for use with La
-TeX.
 
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.262 ...nce un rayon depuis le centre de l'Ã©cran
-                                                  
-? 
-! Emergency stop.
- ...                                              
-                                                  
-l.262 ...nce un rayon depuis le centre de l'Ã©cran
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+(C:\Users\Emmanuel\latex\tex\latex\base\t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+<./images/projection.png, id=244, 398.23781pt x 231.11343pt>
+File: ./images/projection.png Graphic file (type png)
 
- 
+<use ./images/projection.png>
+Package pdftex.def Info: ./images/projection.png used on input line 270.
+(pdftex.def)             Requested size: 358.4107pt x 208.00017pt.
+ [11 <C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/images/projection.png>]
+ [12]
+<./images/unity-3D_interface_zoom.png, id=268, 491.58656pt x 152.06813pt>
+File: ./images/unity-3D_interface_zoom.png Graphic file (type png)
+
+<use ./images/unity-3D_interface_zoom.png>
+Package pdftex.def Info: ./images/unity-3D_interface_zoom.png used on input lin
+e 310.
+(pdftex.def)             Requested size: 442.42381pt x 136.86003pt.
+ [13 <C:/Users/Emmanuel/Project/Unity/SeriousVR/rapport/images/unity-3D_interfa
+ce_zoom.png>]
+Chapitre 5.
+[14
+
+]
+Chapitre 6.
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
+
+ []
+
+[15
+
+]
+Chapitre 7.
+[16
+
+] (C:\Users\Emmanuel\Project\Unity\SeriousVR\rapport\2A_Info_Rapport.lof)
+\tf@lof=\write5
+
+
+Package movie15 Warning: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+(movie15)                @@ Package `movie15' is obsolete and @@
+(movie15)                @@ superseded by `media9'.           @@
+(movie15)                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 339.
+[17
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 339.
+ (C:\Users\Emmanuel\Project\Unity\SeriousVR\rapport\2A_Info_Rapport.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 339.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 339.
+Package rerunfilecheck Info: File `2A_Info_Rapport.out' has not changed.
+(rerunfilecheck)             Checksum: 815963E2D1A2B85AD0ED4C6D2BE44FA5;2009.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 339.
+ ) 
 Here is how much of TeX's memory you used:
- 12710 strings out of 493921
- 184644 string characters out of 3148877
- 345140 words of memory out of 3000000
- 15761 multiletter control sequences out of 15000+200000
- 18500 words of font info for 39 fonts, out of 3000000 for 9000
+ 12810 strings out of 493921
+ 186440 string characters out of 3148877
+ 374148 words of memory out of 3000000
+ 15823 multiletter control sequences out of 15000+200000
+ 18814 words of font info for 40 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 54i,11n,92p,991b,1148s stack positions out of 5000i,500n,10000p,200000b,50000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 54i,11n,92p,991b,1332s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Emmanuel\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi6
+00\ectt1095.pk> <C:\Users\Emmanuel\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkn
+appen\ec\dpi600\ecti1095.pk> <C:\Users\Emmanuel\AppData\Local\MiKTeX\2.9\fonts\
+pk\ljfour\jknappen\ec\dpi600\ecrm0900.pk> <C:\Users\Emmanuel\AppData\Local\MiKT
+eX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk> <C:\Users\Emmanuel\AppDa
+ta\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\Users\E
+mmanuel\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1095.pk
+> <C:\Users\Emmanuel\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi60
+0\ecrm1095.pk> <C:\Users\Emmanuel\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkna
+ppen\ec\dpi600\ecbx2488.pk> <C:\Users\Emmanuel\AppData\Local\MiKTeX\2.9\fonts\p
+k\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Emmanuel\AppData\Local\MiKTe
+X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Emmanuel\AppDat
+a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1728.pk> <C:\Users\Em
+manuel\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk>
+ <C:\Users\Emmanuel\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
+\eccc1095.pk> <C:\Users\Emmanuel\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknap
+pen\ec\dpi600\eccc1200.pk>
+Output written on 2A_Info_Rapport.pdf (18 pages, 2657308 bytes).
+PDF statistics:
+ 847 PDF objects out of 1000 (max. 8388607)
+ 73 named destinations out of 1000 (max. 500000)
+ 307 words of extra memory for PDF output out of 10000 (max. 10000000)
+
